@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctoral disertations</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body ng-app="university">
+<div class="container" style="margin-top: 30px" ng-controller="AppCtrl as ctrl">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Докторські дисертації</div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Тема</th>
+                        <th>Дата захисту</th>
+                        <th>Викладач</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in doctoralDissertations">
+                        <td>{{item.id}}</td>
+                        <td>{{item.themeOfTheDissertation}}</td>
+                        <td>{{item.protectionDate}}</td>
+                        <td>{{item.teacher.name}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
