@@ -1,8 +1,7 @@
 package per.coursework.university.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import per.coursework.university.model.Diploma;
 import per.coursework.university.service.diploma.DiplomaServiceImpl;
 
@@ -19,4 +18,26 @@ public class DiplomaController {
     List<Diploma> showDiplomas() throws SQLException {
         return diplomaService.getAll();
     }
+
+    @PostMapping("/diploma/insert")
+    Diploma insertDiploma(@RequestBody Diploma diploma) throws SQLException {
+        return diplomaService.insertDiploma(diploma);
+    }
+
+    @GetMapping("/diploma/delete")
+    void deleteDiploma(@RequestParam("id") int id) throws SQLException {
+        diplomaService.deleteDiploma(id);
+    }
+
+    @GetMapping("/diploma/get")
+    Diploma getDiplomaById(@RequestParam("id") int id) throws SQLException {
+        return diplomaService.getDiploma(id);
+    }
+
+    @RequestMapping("/diploma/update")
+    Diploma updateDiploma(@RequestBody Diploma diploma, @RequestParam("id") int id) throws SQLException {
+        diploma.setId(id);
+        return diplomaService.updateDiploma(diploma);
+    }
+
 }

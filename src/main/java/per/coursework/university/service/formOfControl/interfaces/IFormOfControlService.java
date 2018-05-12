@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IFormOfControlService {
 
-    public FormOfControl insertFormOfControl(FormOfControl formOfControl);
-    public FormOfControl getFormOfControl(int id);
-    public FormOfControl updateFormOfControl(FormOfControl formOfControl);
-    public FormOfControl deleteFormOfControl(int id);
+    public FormOfControl insertFormOfControl(FormOfControl formOfControl) throws SQLException;
+    public FormOfControl getFormOfControl(int id) throws SQLException;
+    public FormOfControl updateFormOfControl(FormOfControl formOfControl) throws SQLException;
+    public void deleteFormOfControl(int id) throws SQLException;
     public List<FormOfControl> getAll() throws SQLException;
 }

@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IDeaneryDAO {
 
-    public Deanery insertDeanery(Deanery deanery);
-    public Deanery getDeanery(int id);
-    public Deanery updateDeanery(Deanery deanery);
-    public Deanery deleteDeanery(int id);
+    public Deanery insertDeanery(Deanery deanery) throws SQLException;
+    public Deanery getDeanery(int id) throws SQLException;
+    public Deanery updateDeanery(Deanery deanery) throws SQLException;
+    public void deleteDeanery(int id) throws SQLException;
     public List<Deanery> getAll() throws SQLException;
 }

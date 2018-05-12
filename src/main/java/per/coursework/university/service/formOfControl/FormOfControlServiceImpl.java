@@ -16,23 +16,25 @@ public class FormOfControlServiceImpl implements IFormOfControlService {
     private FormOfControlDAOJDBCImpl formOfControlDAO;
 
     @Override
-    public FormOfControl insertFormOfControl(FormOfControl formOfControl) {
-        return null;
+    public FormOfControl insertFormOfControl(FormOfControl formOfControl) throws SQLException {
+
+        return formOfControlDAO.insertFormOfControl(formOfControl);
     }
 
     @Override
-    public FormOfControl getFormOfControl(int id) {
-        return null;
+    public FormOfControl getFormOfControl(int id) throws SQLException {
+
+        return formOfControlDAO.getFormOfControl(id);
     }
 
     @Override
-    public FormOfControl updateFormOfControl(FormOfControl formOfControl) {
-        return null;
+    public FormOfControl updateFormOfControl(FormOfControl formOfControl) throws SQLException {
+        return formOfControlDAO.updateFormOfControl(formOfControl);
     }
 
     @Override
-    public FormOfControl deleteFormOfControl(int id) {
-        return null;
+    public void deleteFormOfControl(int id) throws SQLException {
+        formOfControlDAO.deleteFormOfControl(id);
     }
 
     @Override

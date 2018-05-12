@@ -16,23 +16,25 @@ public class DiplomaServiceImpl implements IDiplomaService {
     private DiplomaDAOJDBCImpl diplomaDAO;
 
     @Override
-    public Diploma insertDiploma(Diploma diploma) {
-        return null;
+    public Diploma insertDiploma(Diploma diploma) throws SQLException {
+
+        return diplomaDAO.insertDiploma(diploma);
     }
 
     @Override
-    public Diploma getDiploma(int id) {
-        return null;
+    public Diploma getDiploma(int id) throws SQLException {
+
+        return diplomaDAO.getDiploma(id);
     }
 
     @Override
-    public Diploma updateDiploma(Diploma diploma) {
-        return null;
+    public Diploma updateDiploma(Diploma diploma) throws SQLException {
+        return diplomaDAO.updateDiploma(diploma);
     }
 
     @Override
-    public Diploma deleteDiploma(int id) {
-        return null;
+    public void deleteDiploma(int id) throws SQLException {
+        diplomaDAO.deleteDiploma(id);
     }
 
     @Override

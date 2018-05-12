@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IDiplomaService {
 
-    public Diploma insertDiploma(Diploma diploma);
-    public Diploma getDiploma(int id);
-    public Diploma updateDiploma(Diploma diploma);
-    public Diploma deleteDiploma(int id);
+    public Diploma insertDiploma(Diploma diploma) throws SQLException;
+    public Diploma getDiploma(int id) throws SQLException;
+    public Diploma updateDiploma(Diploma diploma) throws SQLException;
+    public void deleteDiploma(int id) throws SQLException;
     public List<Diploma> getAll() throws SQLException;
 }

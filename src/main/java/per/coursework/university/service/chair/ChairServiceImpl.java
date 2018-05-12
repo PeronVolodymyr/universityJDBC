@@ -16,23 +16,26 @@ public class ChairServiceImpl implements IChairService {
     private ChairDAOJDBCImpl chairDAO;
 
     @Override
-    public Chair insertChair(Chair chair) {
-        return null;
+    public Chair insertChair(Chair chair) throws SQLException {
+
+        return chairDAO.insertChair(chair);
     }
 
     @Override
-    public Chair getChair(int id) {
-        return null;
+    public Chair getChair(int id) throws SQLException {
+
+        return chairDAO.getChair(id);
     }
 
     @Override
-    public Chair updateChair(Chair chair) {
-        return null;
+    public Chair updateChair(Chair chair) throws SQLException {
+
+        return chairDAO.updateChair(chair);
     }
 
     @Override
-    public Chair deleteChair(int id) {
-        return null;
+    public void deleteChair(int id) throws SQLException {
+        chairDAO.deleteChair(id);
     }
 
     @Override

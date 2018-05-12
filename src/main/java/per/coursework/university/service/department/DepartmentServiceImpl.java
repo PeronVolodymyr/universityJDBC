@@ -17,23 +17,26 @@ public class DepartmentServiceImpl implements IDepartmentService {
     private DepartmentDAOJDBCImpl departmentDAO;
 
     @Override
-    public Department insertDepartment(Department department) {
-        return null;
+    public Department insertDepartment(Department department) throws SQLException {
+
+        return departmentDAO.insertDepartment(department);
     }
 
     @Override
-    public Department getDepartment(int id) {
-        return null;
+    public Department getDepartment(int id) throws SQLException {
+
+        return departmentDAO.getDepartment(id);
     }
 
     @Override
-    public Department updateDepartment(Department department) {
-        return null;
+    public Department updateDepartment(Department department) throws SQLException {
+
+        return departmentDAO.updateDepartment(department);
     }
 
     @Override
-    public Department deleteDepartment(int id) {
-        return null;
+    public void deleteDepartment(int id) throws SQLException {
+        departmentDAO.deleteDepartment(id);
     }
 
     @Override

@@ -16,23 +16,24 @@ public class GroupServiceImpl implements IGroupService {
     private GroupDAOJDBCImpl groupDAO;
 
     @Override
-    public Group insertGroup(Group group) {
-        return null;
+    public Group insertGroup(Group group) throws SQLException {
+
+        return groupDAO.insertGroup(group);
     }
 
     @Override
-    public Group getGroup(int id) {
-        return null;
+    public Group getGroup(int id) throws SQLException {
+        return groupDAO.getGroup(id);
     }
 
     @Override
-    public Group updateGroup(Group group) {
-        return null;
+    public Group updateGroup(Group group) throws SQLException {
+        return groupDAO.updateGroup(group);
     }
 
     @Override
-    public Group deleteGroup(int id) {
-        return null;
+    public void deleteGroup(int id) throws SQLException {
+        groupDAO.deleteGroup(id);
     }
 
     @Override

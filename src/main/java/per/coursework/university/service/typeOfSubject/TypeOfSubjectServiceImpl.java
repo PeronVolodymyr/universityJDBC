@@ -16,23 +16,26 @@ public class TypeOfSubjectServiceImpl implements ITypeOfSubjectService {
     private TypeOfSubjectDAOJDBCImpl typeOfSubjectDAO;
 
     @Override
-    public TypeOfSubject insertTypeOfSubject(TypeOfSubject typeOfSubject) {
-        return null;
+    public TypeOfSubject insertTypeOfSubject(TypeOfSubject typeOfSubject) throws SQLException {
+
+        return typeOfSubjectDAO.insertTypeOfSubject(typeOfSubject);
     }
 
     @Override
-    public TypeOfSubject getTypeOfSubject(int id) {
-        return null;
+    public TypeOfSubject getTypeOfSubject(int id) throws SQLException {
+
+        return typeOfSubjectDAO.getTypeOfSubject(id);
     }
 
     @Override
-    public TypeOfSubject updateTypeOfSubject(TypeOfSubject typeOfSubject) {
-        return null;
+    public TypeOfSubject updateTypeOfSubject(TypeOfSubject typeOfSubject) throws SQLException {
+
+        return typeOfSubjectDAO.updateTypeOfSubject(typeOfSubject);
     }
 
     @Override
-    public TypeOfSubject deleteTypeOfSubject(int id) {
-        return null;
+    public void deleteTypeOfSubject(int id) throws SQLException {
+        typeOfSubjectDAO.deleteTypeOfSubject(id);
     }
 
     @Override

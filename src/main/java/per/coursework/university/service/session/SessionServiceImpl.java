@@ -16,23 +16,23 @@ public class SessionServiceImpl implements ISessionService {
     private SessionDAOJDBCImpl sessionDAO;
 
     @Override
-    public Session insertSession(Session session) {
-        return null;
+    public Session insertSession(Session session) throws SQLException {
+        return sessionDAO.insertSession(session);
     }
 
     @Override
-    public Session getSession(int id) {
-        return null;
+    public Session getSession(int id) throws SQLException {
+        return sessionDAO.getSession(id);
     }
 
     @Override
-    public Session updateSession(Session session) {
-        return null;
+    public Session updateSession(Session session) throws SQLException {
+        return sessionDAO.updateSession(session);
     }
 
     @Override
-    public Session deleteSession(int id) {
-        return null;
+    public void deleteSession(int id) throws SQLException {
+        sessionDAO.deleteSession(id);
     }
 
     @Override

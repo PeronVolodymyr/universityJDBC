@@ -17,23 +17,24 @@ public class CandidatesDissertationServiceImpl implements ICandidatesDissertatio
     private CandidatesDissertationDAOJDBCImpl candidatesDissertationDAO;
 
     @Override
-    public CandidatesDissertation insertCandidatesDissertation(CandidatesDissertation candidatesDissertation) {
-        return null;
+    public CandidatesDissertation insertCandidatesDissertation(CandidatesDissertation candidatesDissertation) throws SQLException {
+        return candidatesDissertationDAO.insertCandidatesDissertation(candidatesDissertation);
     }
 
     @Override
-    public CandidatesDissertation getCandidatesDissertation(int id) {
-        return null;
+    public CandidatesDissertation getCandidatesDissertation(int id) throws SQLException {
+
+        return candidatesDissertationDAO.getCandidatesDissertation(id);
     }
 
     @Override
-    public CandidatesDissertation updateCandidatesDissertation(CandidatesDissertation candidatesDissertation) {
-        return null;
+    public CandidatesDissertation updateCandidatesDissertation(CandidatesDissertation candidatesDissertation) throws SQLException {
+        return candidatesDissertationDAO.updateCandidatesDissertation(candidatesDissertation);
     }
 
     @Override
-    public CandidatesDissertation deleteCandidatesDissertation(int id) {
-        return null;
+    public void deleteCandidatesDissertation(int id) throws SQLException {
+        candidatesDissertationDAO.deleteCandidatesDissertation(id);
     }
 
     @Override

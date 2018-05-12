@@ -16,23 +16,24 @@ public class SubjectServiceImpl implements ISubjectService {
     private SubjectDAOJDBCImpl subjectDAO;
 
     @Override
-    public Subject insertSubject(Subject subject) {
-        return null;
+    public Subject insertSubject(Subject subject) throws SQLException {
+
+        return subjectDAO.insertSubject(subject);
     }
 
     @Override
-    public Subject getSubject(int id) {
-        return null;
+    public Subject getSubject(int id) throws SQLException {
+        return subjectDAO.getSubject(id);
     }
 
     @Override
-    public Subject updateSubject(Subject subject) {
-        return null;
+    public Subject updateSubject(Subject subject) throws SQLException {
+        return subjectDAO.updateSubject(subject);
     }
 
     @Override
-    public Subject deleteSubject(int id) {
-        return null;
+    public void deleteSubject(int id) throws SQLException {
+        subjectDAO.deleteSubject(id);
     }
 
     @Override

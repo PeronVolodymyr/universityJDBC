@@ -16,23 +16,26 @@ public class CurriculumServiceImpl implements ICurriculumService {
     private CurriculumDAOJDBCImpl curriculumDAO;
 
     @Override
-    public Curriculum insertCurriculum(Curriculum curriculum) {
-        return null;
+    public Curriculum insertCurriculum(Curriculum curriculum) throws SQLException {
+
+        return curriculumDAO.insertCurriculum(curriculum);
     }
 
     @Override
-    public Curriculum getCurriculum(int id) {
-        return null;
+    public Curriculum getCurriculum(int id) throws SQLException {
+
+        return curriculumDAO.getCurriculum(id);
     }
 
     @Override
-    public Curriculum updateCurriculum(Curriculum curriculum) {
-        return null;
+    public Curriculum updateCurriculum(Curriculum curriculum) throws SQLException {
+
+        return curriculumDAO.updateCurriculum(curriculum);
     }
 
     @Override
-    public Curriculum deleteCurriculum(int id) {
-        return null;
+    public void deleteCurriculum(int id) throws SQLException {
+        curriculumDAO.deleteCurriculum(id);
     }
 
     @Override

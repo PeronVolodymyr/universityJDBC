@@ -7,6 +7,10 @@ public class TypeOfSubject {
     public TypeOfSubject() {
     }
 
+    public TypeOfSubject(String type) {
+        this.type = type;
+    }
+
     public TypeOfSubject(int id, String type) {
         this.id = id;
         this.type = type;

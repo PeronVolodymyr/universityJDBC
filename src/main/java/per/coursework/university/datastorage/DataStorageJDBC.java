@@ -7,7 +7,7 @@ import java.sql.*;
 
 @Component
 public class DataStorageJDBC {
-    private static final String url = "jdbc:mysql://localhost:3306/information_system_of_the_university";
+    private static final String url = "jdbc:mysql://localhost:3306/newdb";
     private static final String login = "root";
     private static final String password = "619000619";
 
@@ -26,6 +26,22 @@ public class DataStorageJDBC {
 
     public int executeUpdate(String query) throws SQLException {
         return statement.executeUpdate(query);
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public void setStatement(Statement statement) {
+        this.statement = statement;
     }
 
     public DataStorageJDBC(){}

@@ -16,23 +16,23 @@ public class TeacherServiceImpl implements ITeacherService {
     private TeacherDAOJDBCImpl teacherDAO;
 
     @Override
-    public Teacher insertTeacher(Teacher teacher) {
-        return null;
+    public Teacher insertTeacher(Teacher teacher) throws SQLException {
+        return teacherDAO.insertTeacher(teacher);
     }
 
     @Override
-    public Teacher getTeacher(int id) {
-        return null;
+    public Teacher getTeacher(int id) throws SQLException {
+        return teacherDAO.getTeacher(id);
     }
 
     @Override
-    public Teacher updateTeacher(Teacher teacher) {
-        return null;
+    public Teacher updateTeacher(Teacher teacher) throws SQLException {
+        return teacherDAO.updateTeacher(teacher);
     }
 
     @Override
-    public Teacher deleteTeacher(int id) {
-        return null;
+    public void deleteTeacher(int id) throws SQLException {
+        teacherDAO.deleteTeacher(id);
     }
 
     @Override

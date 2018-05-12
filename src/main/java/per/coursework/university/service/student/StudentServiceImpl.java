@@ -16,28 +16,28 @@ public class StudentServiceImpl implements IStudentService {
     private StudentDAOJDBCImpl studentDAO;
 
     @Override
-    public Student insertStudent(Student student) {
-        return null;
+    public Student insertStudent(Student student) throws SQLException {
+
+        return studentDAO.insertStudent(student);
     }
 
     @Override
-    public Student getStudent(int id) {
-        return null;
+    public Student getStudent(int id) throws SQLException {
+        return studentDAO.getStudent(id);
     }
 
     @Override
-    public Student updateStudent(Student student) {
-        return null;
+    public Student updateStudent(Student student) throws SQLException {
+        return studentDAO.updateStudent(student);
     }
 
     @Override
-    public Student deleteStudent(int id) {
-        return null;
+    public void deleteStudent(int id) throws SQLException {
+        studentDAO.deleteStudent(id);
     }
 
     @Override
     public List<Student> getAll() throws SQLException {
         return studentDAO.getAll();
-
     }
 }

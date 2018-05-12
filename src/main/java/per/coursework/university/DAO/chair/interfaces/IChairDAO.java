@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IChairDAO {
 
-    public Chair insertChair(Chair chair);
-    public Chair getChair(int id);
-    public Chair updateChair(Chair chair);
-    public Chair deleteChair(int id);
+    public Chair insertChair(Chair chair) throws SQLException;
+    public Chair getChair(int id) throws SQLException;
+    public Chair updateChair(Chair chair) throws SQLException;
+    public void deleteChair(int id) throws SQLException;
     public List<Chair> getAll() throws SQLException;
 }

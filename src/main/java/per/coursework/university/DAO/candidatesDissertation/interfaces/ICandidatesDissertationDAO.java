@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ICandidatesDissertationDAO {
 
-    public CandidatesDissertation insertCandidatesDissertation(CandidatesDissertation candidatesDissertation);
-    public CandidatesDissertation getCandidatesDissertation(int id);
-    public CandidatesDissertation updateCandidatesDissertation(CandidatesDissertation candidatesDissertation);
-    public CandidatesDissertation deleteCandidatesDissertation(int id);
+    public CandidatesDissertation insertCandidatesDissertation(CandidatesDissertation candidatesDissertation) throws SQLException;
+    public CandidatesDissertation getCandidatesDissertation(int id) throws SQLException;
+    public CandidatesDissertation updateCandidatesDissertation(CandidatesDissertation candidatesDissertation) throws SQLException;
+    public void deleteCandidatesDissertation(int id) throws SQLException;
     public List<CandidatesDissertation> getAll() throws SQLException;
 }

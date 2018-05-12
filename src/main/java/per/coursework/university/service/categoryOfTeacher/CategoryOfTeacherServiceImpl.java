@@ -16,23 +16,26 @@ public class CategoryOfTeacherServiceImpl implements ICategoryOfTeacherService {
     private CategoryOfTeacherDAOJDBCImpl categoryOfTeacherDAO;
 
     @Override
-    public CategoryOfTeacher insertCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher) {
-        return null;
+    public CategoryOfTeacher insertCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher) throws SQLException {
+
+        return categoryOfTeacherDAO.insertCategoryOfTeacher(categoryOfTeacher);
     }
 
     @Override
-    public CategoryOfTeacher getCategoryOfTeacher(int id) {
-        return null;
+    public CategoryOfTeacher getCategoryOfTeacher(int id) throws SQLException {
+
+        return categoryOfTeacherDAO.getCategoryOfTeacher(id);
     }
 
     @Override
-    public CategoryOfTeacher updateCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher) {
-        return null;
+    public CategoryOfTeacher updateCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher) throws SQLException {
+
+        return categoryOfTeacherDAO.updateCategoryOfTeacher(categoryOfTeacher);
     }
 
     @Override
-    public CategoryOfTeacher deleteCategoryOfTeacher(int id) {
-        return null;
+    public void deleteCategoryOfTeacher(int id) throws SQLException {
+        categoryOfTeacherDAO.deleteCategoryOfTeacher(id);
     }
 
     @Override

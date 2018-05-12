@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ICategoryOfTeacherDAO {
 
-    public CategoryOfTeacher insertCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher);
-    public CategoryOfTeacher getCategoryOfTeacher(int id);
-    public CategoryOfTeacher updateCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher);
-    public CategoryOfTeacher deleteCategoryOfTeacher(int id);
+    public CategoryOfTeacher insertCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher) throws SQLException;
+    public CategoryOfTeacher getCategoryOfTeacher(int id) throws SQLException;
+    public CategoryOfTeacher updateCategoryOfTeacher(CategoryOfTeacher categoryOfTeacher) throws SQLException;
+    public void deleteCategoryOfTeacher(int id) throws SQLException;
     public List<CategoryOfTeacher> getAll() throws SQLException;
 }

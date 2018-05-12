@@ -20,23 +20,26 @@ public class DeaneryServiceImpl implements IDeaneryService {
     private DeaneryDAOJDBCImpl deaneryDAO;
 
     @Override
-    public Deanery insertDeanery(Deanery deanery) {
-        return null;
+    public Deanery insertDeanery(Deanery deanery) throws SQLException {
+
+        return deaneryDAO.insertDeanery(deanery);
     }
 
     @Override
-    public Deanery getDeanery(int id) {
-        return null;
+    public Deanery getDeanery(int id) throws SQLException {
+
+        return deaneryDAO.getDeanery(id);
     }
 
     @Override
-    public Deanery updateDeanery(Deanery deanery) {
-        return null;
+    public Deanery updateDeanery(Deanery deanery) throws SQLException {
+
+        return deaneryDAO.updateDeanery(deanery);
     }
 
     @Override
-    public Deanery deleteDeanery(int id) {
-        return null;
+    public void deleteDeanery(int id) throws SQLException {
+        deaneryDAO.deleteDeanery(id);
     }
 
     @Override

@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IStudentDAO {
 
-    public Student insertStudent(Student student);
-    public Student getStudent(int id);
-    public Student updateStudent(Student student);
-    public Student deleteStudent(int id);
+    public Student insertStudent(Student student) throws SQLException;
+    public Student getStudent(int id) throws SQLException;
+    public Student updateStudent(Student student) throws SQLException;
+    public void deleteStudent(int id) throws SQLException;
     public List<Student> getAll() throws SQLException;
 }

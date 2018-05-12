@@ -16,23 +16,26 @@ public class DoctoralDissertationServiceImpl implements IDoctoralDissertationSer
     private DoctoralDissertationDAOJDBCImpl doctoralDissertationDAO;
 
     @Override
-    public DoctoralDissertation insertDoctoralDissertation(DoctoralDissertation doctoralDissertation) {
-        return null;
+    public DoctoralDissertation insertDoctoralDissertation(DoctoralDissertation doctoralDissertation) throws SQLException {
+
+        return doctoralDissertationDAO.insertDoctoralDissertation(doctoralDissertation);
     }
 
     @Override
-    public DoctoralDissertation getDoctoralDissertation(int id) {
-        return null;
+    public DoctoralDissertation getDoctoralDissertation(int id) throws SQLException {
+
+        return doctoralDissertationDAO.getDoctoralDissertation(id);
     }
 
     @Override
-    public DoctoralDissertation updateDoctoralDissertation(DoctoralDissertation doctoralDissertation) {
-        return null;
+    public DoctoralDissertation updateDoctoralDissertation(DoctoralDissertation doctoralDissertation) throws SQLException {
+
+        return doctoralDissertationDAO.updateDoctoralDissertation(doctoralDissertation);
     }
 
     @Override
-    public DoctoralDissertation deleteDoctoralDissertation(int id) {
-        return null;
+    public void deleteDoctoralDissertation(int id) throws SQLException {
+        doctoralDissertationDAO.deleteDoctoralDissertation(id);
     }
 
     @Override

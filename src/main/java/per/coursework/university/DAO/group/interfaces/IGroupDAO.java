@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IGroupDAO {
 
-    public Group insertGroup(Group group);
-    public Group getGroup(int id);
-    public Group updateGroup(Group group);
-    public Group deleteGroup(int id);
+    public Group insertGroup(Group group) throws SQLException;
+    public Group getGroup(int id) throws SQLException;
+    public Group updateGroup(Group group) throws SQLException;
+    public void deleteGroup(int id) throws SQLException;
     public List<Group> getAll() throws SQLException;
 }

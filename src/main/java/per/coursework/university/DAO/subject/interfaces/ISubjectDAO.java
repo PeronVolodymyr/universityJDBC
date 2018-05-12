@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ISubjectDAO {
 
-    public Subject insertSubject(Subject subject);
-    public Subject getSubject(int id);
-    public Subject updateSubject(Subject subject);
-    public Subject deleteSubject(int id);
+    public Subject insertSubject(Subject subject) throws SQLException;
+    public Subject getSubject(int id) throws SQLException;
+    public Subject updateSubject(Subject subject) throws SQLException;
+    public void deleteSubject(int id) throws SQLException;
     public List<Subject> getAll() throws SQLException;
 }

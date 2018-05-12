@@ -7,6 +7,7 @@ import per.coursework.university.datastorage.DataStorageJDBC;
 import per.coursework.university.model.Deanery;
 import per.coursework.university.model.Department;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,23 +22,57 @@ public class DepartmentDAOJDBCImpl implements IDepartmentDAO {
     private List<Department> list = new ArrayList<>();
 
     @Override
-    public Department insertDepartment(Department department) {
-        return null;
+    public Department insertDepartment(Department department) throws SQLException {
+        String query = "INSERT INTO `newdb`.`department` (`name`, `dean`, `deanery_id`) VALUES (?,?,?)";
+        PreparedStatement statement = dataStorage.getConnection().prepareStatement(query);
+        statement.setString(1,department.getName());
+        statement.setString(2,department.getDean());
+        statement.setInt(3,department.getDeanery().getId());
+        int countInsertedRows = statement.executeUpdate();
+        statement.close();
+        return department;
     }
 
     @Override
-    public Department getDepartment(int id) {
-        return null;
+    public Department getDepartment(int id) throws SQLException {
+        String query = "SELECT * FROM `newdb`.`department` " +
+                "JOIN deanery ON deanery_id = deanery.id WHERE department.id=?";
+        PreparedStatement statement = dataStorage.getConnection().prepareStatement(query);
+        statement.setInt(1,id);
+        ResultSet rs = statement.executeQuery();
+        rs.next();
+        Department department = new Department(
+                rs.getInt("department.id"),
+                rs.getString("department.name"),
+                rs.getString("department.dean"),
+                new Deanery(rs.getInt("deanery.id"),
+                        rs.getString("deanery.address"),
+                        rs.getString("deanery.phone_number"))
+        );
+        statement.close();
+        return department;
     }
 
     @Override
-    public Department updateDepartment(Department department) {
-        return null;
+    public Department updateDepartment(Department department) throws SQLException {
+        String query = "UPDATE `newdb`.`department` SET `name`=?, `dean`=?, `deanery_id`=? WHERE `id`=?";
+        PreparedStatement statement = dataStorage.getConnection().prepareStatement(query);
+        statement.setString(1,department.getName());
+        statement.setString(2,department.getDean());
+        statement.setInt(3,department.getDeanery().getId());
+        statement.setInt(4,department.getId());
+        int countUpdatedRows = statement.executeUpdate();
+        statement.close();
+        return department;
     }
 
     @Override
-    public Department deleteDepartment(int id) {
-        return null;
+    public void deleteDepartment(int id) throws SQLException {
+        String query = "DELETE FROM `newdb`.`department` WHERE `id`=?";
+        PreparedStatement statement = dataStorage.getConnection().prepareStatement(query);
+        statement.setInt(1,id);
+        int countDeletedRows = statement.executeUpdate();
+        statement.close();
     }
 
     @Override

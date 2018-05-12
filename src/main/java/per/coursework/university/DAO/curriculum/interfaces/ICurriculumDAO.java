@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ICurriculumDAO {
 
-    public Curriculum insertCurriculum(Curriculum curriculum);
-    public Curriculum getCurriculum(int id);
-    public Curriculum updateCurriculum(Curriculum curriculum);
-    public Curriculum deleteCurriculum(int id);
+    public Curriculum insertCurriculum(Curriculum curriculum) throws SQLException;
+    public Curriculum getCurriculum(int id) throws SQLException;
+    public Curriculum updateCurriculum(Curriculum curriculum) throws SQLException;
+    public void deleteCurriculum(int id) throws SQLException;
     public List<Curriculum> getAll() throws SQLException;
 }
