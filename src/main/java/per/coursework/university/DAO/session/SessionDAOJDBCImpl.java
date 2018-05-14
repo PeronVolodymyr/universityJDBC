@@ -5,6 +5,11 @@ import org.springframework.stereotype.Component;
 import per.coursework.university.DAO.session.interfaces.ISessionDAO;
 import per.coursework.university.datastorage.DataStorageJDBC;
 import per.coursework.university.model.*;
+import per.coursework.university.service.chair.ChairServiceImpl;
+import per.coursework.university.service.curriculum.CurriculumServiceImpl;
+import per.coursework.university.service.deanery.DeaneryServiceImpl;
+import per.coursework.university.service.department.DepartmentServiceImpl;
+import per.coursework.university.service.student.StudentServiceImpl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,8 +22,12 @@ public class SessionDAOJDBCImpl implements ISessionDAO {
 
     @Autowired
     private DataStorageJDBC dataStorage;
+    @Autowired
+    private CurriculumServiceImpl curriculumService;
+    @Autowired
+    private StudentServiceImpl studentService;
 
-    private List<Session> list = new ArrayList<>();
+    private List<Session> sessions = new ArrayList<>();
 
     @Override
     public Session insertSession(Session session) throws SQLException {
@@ -169,116 +178,43 @@ public class SessionDAOJDBCImpl implements ISessionDAO {
 
     @Override
     public List<Session> getAll() throws SQLException {
-        list.clear();
-        ResultSet rs = dataStorage.executeQuery("select * from `newdb`.`session` " +
-                "inner join curriculum on curriculum_id = curriculum.id " +
-                "inner join teacher on teacher_id = teacher.id " +
-                "inner join category_of_teacher on category_of_teacher_id = category_of_teacher.id " +
-                "inner join chair chTe on teacher.chair_id = chTe.id " +
-                "inner join department dpTe on chTe.department_id = dpTe.id " +
-                "inner join deanery dnTe on dpTe.deanery_id = dnTe.id " +
-                "inner join subject on subject_id = subject.id " +
-                "inner join type_of_subject on type_of_subject_id = type_of_subject.id " +
-                "inner join form_of_control on form_of_control_id = form_of_control.id " +
-                "inner join newdb.group on group_id = newdb.group.id " +
-                "inner join chair chGr on group.chair_id = chGr.id " +
-                "inner join department dpGr on chGr.department_id = dpGr.id " +
-                "inner join deanery dnGr on dpGr.deanery_id = dnGr.id " +
-                "inner join student on student_id = student.id " +
-                "inner join newdb.group stGr on student.group_id = stGr.id " +
-                "inner join chair stCh on stGr.chair_id = stCh.id " +
-                "inner join department stDp on stCh.department_id = stDp.id " +
-                "inner join deanery stDn on stDp.deanery_id = stDn.id");
-//                "order by newdb.session.id");
-
+        sessions.clear();
+        List<Curriculum> curriculumList = curriculumService.getAll();
+        List<Student> studentList = studentService.getAll();
+        String query = "SELECT * FROM `newdb`.`session`";
+        ResultSet rs = dataStorage.executeQuery(query);
         while (rs.next())
         {
-            list.add(new Session(
+            Student currentStudent = new Student();
+            Curriculum currentCurriculum = new Curriculum();
+            for (Curriculum curriculum : curriculumList) {
+                if(curriculum.getId() == rs.getInt("session.curriculum_id")){
+                    currentCurriculum.setId(curriculum.getId());
+                    currentCurriculum.setSemester(curriculum.getSemester());
+                    currentCurriculum.setTeacher(curriculum.getTeacher());
+                    currentCurriculum.setSubject(curriculum.getSubject());
+                    currentCurriculum.setGroup(curriculum.getGroup());
+                    break;
+                }
+            }
+            for (Student student : studentList) {
+                if(student.getId() == rs.getInt("session.student_id")) {
+                    currentStudent.setId(student.getId());
+                    currentStudent.setName(student.getName());
+                    currentStudent.setDateOfBirth(student.getDateOfBirth());
+                    currentStudent.setChildren(student.isChildren());
+                    currentStudent.setScholarship(student.getScholarship());
+                    currentStudent.setGroup(student.getGroup());
+                    break;
+                }
+            }
+            sessions.add(new Session(
                     rs.getInt("session.id"),
                     rs.getInt("session.mark"),
-                    new Student(
-                            rs.getInt("student.id"),
-                            rs.getString("student.name"),
-                            rs.getDate("student.date_of_birth").toLocalDate(),
-                            rs.getBoolean("student.children"),
-                            rs.getInt("student.scholarship"),
-                            new Group(
-                                    rs.getInt("stGr.id"),
-                                    rs.getInt("stGr.course"),
-                                    rs.getInt("stGr.number"),
-                                    new Chair(
-                                            rs.getInt("stCh.id"),
-                                            rs.getString("stCh.name"),
-                                            rs.getString("stCh.head_of_chair"),
-                                            new Department(
-                                                    rs.getInt("stDp.id"),
-                                                    rs.getString("stDp.name"),
-                                                    rs.getString("stDp.dean"),
-                                                    new Deanery(
-                                                            rs.getInt("stDn.id"),
-                                                            rs.getString("stDn.address"),
-                                                            rs.getString("stDn.phone_number"))
-                                            )
-                                    )
-                            )
-                    ),
-                    new Curriculum(
-                            rs.getInt("curriculum.id"),
-                            rs.getInt("curriculum.semestr"),
-                            new Teacher(
-                                    rs.getInt("teacher.id"),
-                                    rs.getString("teacher.name"),
-                                    rs.getDate("teacher.date_of_birth").toLocalDate(),
-                                    rs.getInt("teacher.count_of_children"),
-                                    rs.getInt("teacher.salary"),
-                                    new CategoryOfTeacher(
-                                            rs.getInt("category_of_teacher.id"),
-                                            rs.getString("category_of_teacher.category")),
-                                    new Chair(
-                                            rs.getInt("chTe.id"),
-                                            rs.getString("chTe.name"),
-                                            rs.getString("chTe.head_of_chair"),
-                                            new Department(
-                                                    rs.getInt("dpTe.id"),
-                                                    rs.getString("dpTe.name"),
-                                                    rs.getString("dpTe.dean"),
-                                                    new Deanery(rs.getInt("dnTe.id"),
-                                                            rs.getString("dnTe.address"),
-                                                            rs.getString("dnTe.phone_number")
-                                                    )
-                                            )
-                                    )),
-                            new Subject(
-                                    rs.getInt("subject.id"),
-                                    rs.getString("subject.name"),
-                                    rs.getInt("subject.number_of_hours"),
-                                    new TypeOfSubject(
-                                            rs.getInt("type_of_subject.id"),
-                                            rs.getString("type_of_subject.type")),
-                                    new FormOfControl(
-                                            rs.getInt("form_of_control.id"),
-                                            rs.getString("form_of_control.form"))),
-                            new Group(
-                                    rs.getInt("group.id"),
-                                    rs.getInt("group.course"),
-                                    rs.getInt("group.number"),
-                                    new Chair(
-                                            rs.getInt("chGr.id"),
-                                            rs.getString("chGr.name"),
-                                            rs.getString("chGr.head_of_chair"),
-                                            new Department(
-                                                    rs.getInt("dpGr.id"),
-                                                    rs.getString("dpGr.name"),
-                                                    rs.getString("dpGr.dean"),
-                                                    new Deanery(rs.getInt("dnGr.id"),
-                                                            rs.getString("dnGr.address"),
-                                                            rs.getString("dnGr.phone_number"))
-                                            )
-                                    )
-                            )
-                    )
+                    currentStudent,
+                    currentCurriculum
             ));
         }
-        return list;
+        return sessions;
     }
 }
